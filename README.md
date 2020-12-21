@@ -2,6 +2,8 @@
 
 seach, sort, filter latest stories from Hacker News
 
+Hosted on GitHub [https://hunterphillips.github.io/HN_Search/](https://hunterphillips.github.io/HN_Search/)
+
 ![screenshot](https://github.com/hunterphillips/HN_Search/blob/main/src/assets/hnSearchPreview.PNG)
 
 ## To run on your machine
