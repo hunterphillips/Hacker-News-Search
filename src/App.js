@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./App.css";
-import resetBtn from "./assets/reset.png";
+// import resetBtn from "./assets/reset.png";
 import lightOn from "./assets/lightbulb_on.png";
 import lightOff from "./assets/lightbulb_off.png";
 
@@ -15,7 +15,6 @@ class App extends React.Component {
 			searchTerm: "",
 			query: "",
 			data: [],
-			showingLatest: true,
 			sortProp: "points",
 			lightOn: true,
 		};
@@ -44,7 +43,6 @@ class App extends React.Component {
 		this.getStories(`search?query=${this.state.searchTerm}`).then(() => {
 			this.sortList(this.state.data, this.state.sortProp);
 		});
-		this.setState({ showingLatest: false });
 	}
 
 	resetList() {
@@ -52,7 +50,7 @@ class App extends React.Component {
 		this.getStories("search_by_date?tags=story").then(() => {
 			this.sortList(this.state.data, this.state.sortProp);
 		});
-		this.setState({ showingLatest: true, searchTerm: "", query: "" });
+		this.setState({ searchTerm: "", query: "" });
 	}
 
 	sortList(list, prop) {
@@ -67,7 +65,7 @@ class App extends React.Component {
 	}
 
 	render() {
-		let filteredList = this.state.data.filter(
+		const filteredList = this.state.data.filter(
 			(item) =>
 				item.title.toLowerCase().startsWith(this.state.query) ||
 				item.author.toLowerCase().startsWith(this.state.query)
@@ -84,7 +82,9 @@ class App extends React.Component {
 				}}
 			>
 				<div style={{ position: "relative" }}>
-					<h1 className="AppHeader">HN Search</h1>
+					<h1 className="AppHeader" onClick={this.resetList}>
+						HN Search
+					</h1>
 					<img
 						className="lightBulb"
 						onClick={() => this.setState({ lightOn: !this.state.lightOn })}
@@ -109,11 +109,6 @@ class App extends React.Component {
 						<button type="submit" disabled={!this.state.searchTerm}>
 							Submit
 						</button>
-						{!this.state.showingLatest ? (
-							<div onClick={this.resetList}>
-								<img className="resetImg" src={resetBtn} alt="reset button" />
-							</div>
-						) : null}
 					</div>
 					<div className="formElementWrap">
 						<label htmlFor="filter">Filter: </label>
@@ -137,78 +132,76 @@ class App extends React.Component {
 	}
 }
 
-class DataTable extends React.Component {
-	setHeaderStyle(prop, sortProp) {
+const DataTable = (props) => {
+	const { list, sortList, sortProp, lightOn } = props;
+	const altURL = "https://news.ycombinator.com/item?id="; // if item url is null
+
+	const setHeaderStyle = (prop, sortProp) => {
 		return prop === sortProp ? { textDecoration: "underline" } : {};
-	}
+	};
 
-	render() {
-		const { list, sortList, sortProp, lightOn } = this.props;
-		const altURL = "https://news.ycombinator.com/item?id="; // if item url is null
-
-		return (
-			<div className="tableWrap">
-				<table
-					className="dataTable"
-					style={{
-						color: lightOn ? "#6e6e6e" : "white",
-					}}
-				>
-					<tbody>
-						<tr>
-							<th
-								className="titleCol sortHeader"
-								style={this.setHeaderStyle("title", sortProp)}
-								onClick={() => sortList(list, "title")}
-							>
-								title
-							</th>
-							<th className="linkCol linkHeader">url</th>
-							<th
-								className="sortHeader"
-								style={this.setHeaderStyle("author", sortProp)}
-								onClick={() => sortList(list, "author")}
-							>
-								author
-							</th>
-							<th
-								className="sortHeader"
-								style={this.setHeaderStyle("points", sortProp)}
-								onClick={() => sortList(list, "points")}
-							>
-								points
-							</th>
-							<th
-								className="dateCol dateHeader sortHeader"
-								style={this.setHeaderStyle("created_at", sortProp)}
-								onClick={() => sortList(list, "created_at")}
-							>
-								date
-							</th>
+	return (
+		<div className="tableWrap">
+			<table
+				className="dataTable"
+				style={{
+					color: lightOn ? "#6e6e6e" : "white",
+				}}
+			>
+				<tbody>
+					<tr>
+						<th
+							className="titleCol sortHeader"
+							style={setHeaderStyle("title", sortProp)}
+							onClick={() => sortList(list, "title")}
+						>
+							title
+						</th>
+						<th className="linkCol linkHeader">url</th>
+						<th
+							className="sortHeader"
+							style={setHeaderStyle("author", sortProp)}
+							onClick={() => sortList(list, "author")}
+						>
+							author
+						</th>
+						<th
+							className="sortHeader"
+							style={setHeaderStyle("points", sortProp)}
+							onClick={() => sortList(list, "points")}
+						>
+							points
+						</th>
+						<th
+							className="dateCol dateHeader sortHeader"
+							style={setHeaderStyle("created_at", sortProp)}
+							onClick={() => sortList(list, "created_at")}
+						>
+							date
+						</th>
+					</tr>
+					{list.map((item) => (
+						<tr key={item.objectID}>
+							<td className="titleCol">{item.title}</td>
+							<td className="linkCol">
+								<a
+									href={item.url ? item.url : `${altURL}${item.objectID}`}
+									className="App-link"
+									target="_blank"
+									rel="noreferrer"
+								>
+									link
+								</a>
+							</td>
+							<td className="authorCol">{item.author}</td>
+							<td className="pointCol">{item.points}</td>
+							<td className="dateCol">{item.created_at.split("T")[0]}</td>
 						</tr>
-						{list.map((item) => (
-							<tr key={item.objectID}>
-								<td className="titleCol">{item.title}</td>
-								<td className="linkCol">
-									<a
-										href={item.url ? item.url : `${altURL}${item.objectID}`}
-										className="App-link"
-										target="_blank"
-										rel="noreferrer"
-									>
-										link
-									</a>
-								</td>
-								<td className="authorCol">{item.author}</td>
-								<td className="pointCol">{item.points}</td>
-								<td className="dateCol">{item.created_at.split("T")[0]}</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-			</div>
-		);
-	}
-}
+					))}
+				</tbody>
+			</table>
+		</div>
+	);
+};
 
 export default App;
