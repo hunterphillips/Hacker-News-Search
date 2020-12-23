@@ -17,9 +17,6 @@ class App extends React.Component {
 			sortProp: "points",
 			lightOn: true,
 		};
-		this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-		this.getStories = this.getStories.bind(this);
-		this.resetList = this.resetList.bind(this);
 		this.sortList = this.sortList.bind(this);
 	}
 
@@ -28,29 +25,29 @@ class App extends React.Component {
 		this.resetList();
 	}
 
-	getStories(query = "") {
+	getStories = (query = "") => {
 		// GET request > update state.data
 		return axios
 			.get(`${API_ENDPOINT}${query}`)
 			.then((res) => this.setState({ data: res.data.hits }))
 			.catch((error) => console.log(error));
-	}
+	};
 
-	handleSearchSubmit(e) {
+	handleSearchSubmit = (e) => {
 		// on search submit > use searchTerm in GET request > update state.data
 		e.preventDefault();
 		this.getStories(`search?query=${this.state.searchTerm}`).then(() => {
 			this.sortList(this.state.data, this.state.sortProp);
 		});
-	}
+	};
 
-	resetList() {
+	resetList = () => {
 		// reset to default list of latest stories
 		this.getStories("search_by_date?tags=story").then(() => {
 			this.sortList(this.state.data, this.state.sortProp);
 		});
 		this.setState({ searchTerm: "", query: "" });
-	}
+	};
 
 	sortList(list, prop) {
 		let newList = [...list];
