@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import "./App.css";
-// import resetBtn from "./assets/reset.png";
 import lightOn from "./assets/lightbulb_on.png";
 import lightOff from "./assets/lightbulb_off.png";
 
