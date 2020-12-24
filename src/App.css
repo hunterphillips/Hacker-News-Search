@@ -1,9 +1,6 @@
 .App {
 	min-height: 100vh;
 	text-align: center;
-	/* set in App.js */
-	/* background-color: #282c34; */
-	/* background-color: rgb(246, 246, 239); */
 	color: white;
 	font-size: calc(9px + 1.9vmin);
 	display: flex;

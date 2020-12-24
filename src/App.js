@@ -6,6 +6,7 @@ import lightOff from "./assets/lightbulb_off.png";
 
 // HN Search API https://hn.algolia.com/api
 const API_ENDPOINT = "https://hn.algolia.com/api/v1/";
+const currentTime = new Date().toLocaleTimeString();
 
 class App extends React.Component {
 	constructor(props) {
@@ -15,9 +16,18 @@ class App extends React.Component {
 			query: "",
 			data: [],
 			sortProp: "points",
-			lightOn: true,
+			lightOn: this.isDayTime(),
 		};
 		this.sortList = this.sortList.bind(this);
+	}
+
+	isDayTime() {
+		let hr = Number(currentTime.split(":")[0]);
+		let tod = currentTime.split(" ")[1];
+		return (
+			(tod === "AM" && hr >= 7 && hr < 12) ||
+			(tod === "PM" && (hr < 8 || hr === 12))
+		);
 	}
 
 	componentDidMount() {
