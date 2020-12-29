@@ -12,7 +12,7 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchTerm: "",
+			searchTerm: localStorage.getItem("storedSearch") || "",
 			query: "",
 			data: [],
 			sortProp: "points",
@@ -31,8 +31,10 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		// onload > get latest stories > sort by default sort property
-		this.resetList();
+		// onload > get last saved search OR get latest stories
+		return this.state.searchTerm
+			? this.getStories(`search?query=${this.state.searchTerm}`)
+			: this.resetList();
 	}
 
 	getStories = (query = "") => {
@@ -46,6 +48,7 @@ class App extends React.Component {
 	handleSearchSubmit = (e) => {
 		// on search submit > use searchTerm in GET request > update state.data
 		e.preventDefault();
+		localStorage.setItem("storedSearch", this.state.searchTerm);
 		this.getStories(`search?query=${this.state.searchTerm}`).then(() => {
 			this.sortList(this.state.data, this.state.sortProp);
 		});
@@ -57,6 +60,7 @@ class App extends React.Component {
 			this.sortList(this.state.data, this.state.sortProp);
 		});
 		this.setState({ searchTerm: "", query: "" });
+		localStorage.setItem("storedSearch", "");
 	};
 
 	sortList(list, prop) {
@@ -110,6 +114,7 @@ class App extends React.Component {
 						<input
 							id="search"
 							type="text"
+							value={this.state.searchTerm}
 							onChange={(e) => this.setState({ searchTerm: e.target.value })}
 						></input>
 						<button type="submit" disabled={!this.state.searchTerm}>
@@ -138,11 +143,10 @@ class App extends React.Component {
 	}
 }
 
-const DataTable = (props) => {
-	const { list, sortList, sortProp, lightOn } = props;
+const DataTable = ({ list, sortList, sortProp, lightOn }) => {
 	const altURL = "https://news.ycombinator.com/item?id="; // if item url is null
 
-	const setHeaderStyle = (prop, sortProp) => {
+	const setHeaderStyle = (prop) => {
 		return prop === sortProp ? { textDecoration: "underline" } : {};
 	};
 
@@ -158,7 +162,7 @@ const DataTable = (props) => {
 					<tr>
 						<th
 							className="titleCol sortHeader"
-							style={setHeaderStyle("title", sortProp)}
+							style={setHeaderStyle("title")}
 							onClick={() => sortList(list, "title")}
 						>
 							title
@@ -166,21 +170,21 @@ const DataTable = (props) => {
 						<th className="linkCol linkHeader">url</th>
 						<th
 							className="sortHeader"
-							style={setHeaderStyle("author", sortProp)}
+							style={setHeaderStyle("author")}
 							onClick={() => sortList(list, "author")}
 						>
 							author
 						</th>
 						<th
 							className="sortHeader"
-							style={setHeaderStyle("points", sortProp)}
+							style={setHeaderStyle("points")}
 							onClick={() => sortList(list, "points")}
 						>
 							points
 						</th>
 						<th
 							className="dateCol dateHeader sortHeader"
-							style={setHeaderStyle("created_at", sortProp)}
+							style={setHeaderStyle("created_at")}
 							onClick={() => sortList(list, "created_at")}
 						>
 							date
