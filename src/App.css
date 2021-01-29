@@ -128,6 +128,16 @@ tr {
 	font-size: 0.9em;
 }
 
+.linkSeparator {
+	visibility: hidden;
+	padding: 0 0.15em;
+	font-weight: 100;
+}
+.commentIcon {
+	width: 1em;
+	vertical-align: text-bottom;
+}
+
 @media (max-width: 580px) {
 	.App {
 		font-size: calc(10px + 1.9vmin);
