@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/HN_Search/static/css/main.82f4a7d9.chunk.css",
-    "main.js": "/HN_Search/static/js/main.6b40ea7b.chunk.js",
-    "main.js.map": "/HN_Search/static/js/main.6b40ea7b.chunk.js.map",
+    "main.css": "/HN_Search/static/css/main.adb2a2ee.chunk.css",
+    "main.js": "/HN_Search/static/js/main.da58f454.chunk.js",
+    "main.js.map": "/HN_Search/static/js/main.da58f454.chunk.js.map",
     "runtime-main.js": "/HN_Search/static/js/runtime-main.253c5cff.js",
     "runtime-main.js.map": "/HN_Search/static/js/runtime-main.253c5cff.js.map",
     "static/js/2.6bf52b0f.chunk.js": "/HN_Search/static/js/2.6bf52b0f.chunk.js",
     "static/js/2.6bf52b0f.chunk.js.map": "/HN_Search/static/js/2.6bf52b0f.chunk.js.map",
     "index.html": "/HN_Search/index.html",
-    "static/css/main.82f4a7d9.chunk.css.map": "/HN_Search/static/css/main.82f4a7d9.chunk.css.map",
+    "static/css/main.adb2a2ee.chunk.css.map": "/HN_Search/static/css/main.adb2a2ee.chunk.css.map",
     "static/js/2.6bf52b0f.chunk.js.LICENSE.txt": "/HN_Search/static/js/2.6bf52b0f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.253c5cff.js",
     "static/js/2.6bf52b0f.chunk.js",
-    "static/css/main.82f4a7d9.chunk.css",
-    "static/js/main.6b40ea7b.chunk.js"
+    "static/css/main.adb2a2ee.chunk.css",
+    "static/js/main.da58f454.chunk.js"
   ]
 }
