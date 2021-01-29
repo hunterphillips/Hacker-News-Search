@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import lightOn from "./assets/lightbulb_on.png";
 import lightOff from "./assets/lightbulb_off.png";
+import commentIcon from "./assets/comment.png";
 
 // HN Search API https://hn.algolia.com/api
 const API_ENDPOINT = "https://hn.algolia.com/api/v1/";
@@ -201,6 +202,19 @@ const DataTable = ({ list, sortList, sortProp, lightOn }) => {
 									rel="noreferrer"
 								>
 									link
+								</a>
+								<span className="linkSeparator">|</span>
+								<a
+									href={`${altURL}${item.objectID}`}
+									className="App-link"
+									target="_blank"
+									rel="noreferrer"
+								>
+									<img
+										className="commentIcon"
+										src={commentIcon}
+										alt="comment"
+									/>
 								</a>
 							</td>
 							<td className="authorCol">{item.author}</td>
