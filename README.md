@@ -2,7 +2,7 @@
 
 seach, sort, filter latest stories from Hacker News
 
-Hosted on GitHub Pages [https://hunterphillips.github.io/HN_Search/](https://hunterphillips.github.io/HN_Search/)
+Hosted on Heroku [https://search-hn.herokuapp.com/](https://search-hn.herokuapp.com/)
 
 ![screenshot](https://github.com/hunterphillips/HN_Search/blob/main/src/assets/hnSearchPreview.PNG)
 
