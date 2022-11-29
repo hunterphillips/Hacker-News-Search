@@ -3,14 +3,14 @@ import commentIcon from '../assets/comment.png';
 export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
   const altURL = 'https://news.ycombinator.com/item?id='; // if item url is null
 
-  const setHeaderStyle = (prop) => {
-    return prop === sortProp ? { textDecoration: 'underline' } : {};
+  const setSortClass = (prop) => {
+    return prop === sortProp ? 'underline' : '';
   };
 
   return (
-    <div className="tableWrap">
+    <div className="table-container">
       <table
-        className="dataTable"
+        className="table"
         style={{
           color: lightOn ? '#6e6e6e' : 'white',
         }}
@@ -18,30 +18,26 @@ export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
         <tbody>
           <tr>
             <th
-              className="titleCol sortHeader"
-              style={setHeaderStyle('title')}
+              className={`title-col ${setSortClass('title')}`}
               onClick={sortList(list, 'title')}
             >
               title
             </th>
-            <th className="linkCol linkHeader"></th>
+            <th className="center"></th>
             <th
-              className="sortHeader"
-              style={setHeaderStyle('author')}
+              className={`${setSortClass('author')}`}
               onClick={sortList(list, 'author')}
             >
               author
             </th>
             <th
-              className="sortHeader"
-              style={setHeaderStyle('points')}
+              className={`center ${setSortClass('points')}`}
               onClick={sortList(list, 'points')}
             >
               points
             </th>
             <th
-              className="dateCol dateHeader sortHeader"
-              style={setHeaderStyle('created_at')}
+              className={`date-col center ${setSortClass('created_at')}`}
               onClick={sortList(list, 'created_at')}
             >
               date
@@ -49,7 +45,7 @@ export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
           </tr>
           {list.map((item) => (
             <tr key={item.objectID}>
-              <td className="titleCol">
+              <td className="title-col">
                 <a
                   href={item.url ? item.url : `${altURL}${item.objectID}`}
                   className="App-link"
@@ -59,7 +55,7 @@ export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
                   {item.title}
                 </a>
               </td>
-              <td className="linkCol">
+              <td className="center">
                 <a
                   href={`${altURL}${item.objectID}`}
                   className="App-link"
@@ -67,15 +63,15 @@ export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
                   rel="noreferrer"
                 >
                   <img
-                    className="commentIcon"
+                    className="comment-icon"
                     src={commentIcon}
                     alt="comment"
                   />
                 </a>
               </td>
-              <td className="authorCol">{item.author}</td>
-              <td className="pointCol">{item.points}</td>
-              <td className="dateCol">{item.created_at.split('T')[0]}</td>
+              <td className="author-col">{item.author}</td>
+              <td className="point-col center">{item.points}</td>
+              <td className="date-col">{item.created_at.split('T')[0]}</td>
             </tr>
           ))}
         </tbody>
