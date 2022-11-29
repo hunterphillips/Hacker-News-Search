@@ -2,19 +2,19 @@
   min-height: 100vh;
   text-align: center;
   color: white;
-  font-size: calc(9px + 1.9vmin);
+  font-size: calc(9px + 1.71vmin);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.AppHeader {
+.App-header {
   padding-top: 0.75em;
   color: rgb(255, 102, 0);
   cursor: pointer;
 }
 
-.lightBulb {
+.lightbulb {
   height: 1.65em;
   line-height: 0em;
   margin-top: auto;
@@ -34,6 +34,7 @@
   color: #61dafb;
 }
 
+/* Search Form */
 .form {
   display: flex;
   flex-wrap: wrap;
@@ -41,7 +42,6 @@
   border-bottom: 1px solid #ffffff1a;
   margin-bottom: 10px;
   padding-bottom: 5px;
-  /* color: #303030;  set in App.js */
 }
 
 .form-group {
@@ -60,28 +60,21 @@
   letter-spacing: 0.75px;
 }
 
-.resetImg {
-  width: 0.6em;
-  height: 0.6em;
-  padding-left: 8px;
-  cursor: pointer;
-}
-
-.tableWrap {
+/* List Table */
+.table-container {
   width: 90%;
   max-width: 45em;
   padding-bottom: 1.5em;
 }
 
-.dataTable {
+.table {
   text-align: left;
-  max-width: 90%;
+  max-width: 95%;
   margin: auto;
   font-size: 0.85em;
-  /* color: #727272; */
 }
 
-.dataTable td {
+.table td {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -103,21 +96,14 @@ th {
   width: 8em;
   min-width: 1.7em;
   max-width: 20%;
+  cursor: pointer;
 }
 tr {
   display: flex;
   padding-bottom: 1px;
 }
 
-.dateHeader {
-  text-align: center;
-}
-
-.sortHeader {
-  cursor: pointer;
-}
-
-.titleCol {
+.title-col {
   max-width: 45vw !important;
   text-align: left !important;
   min-width: 10em !important;
@@ -125,30 +111,31 @@ tr {
   font-size: 0.8em;
   width: -webkit-fill-available !important;
 }
-.linkCol {
-  text-align: center;
-}
-.pointCol {
-  text-align: center;
+.point-col {
   font-family: monospace;
 }
-.authorCol {
+.author-col {
   font-size: 0.85em;
 }
-.dateCol {
+.date-col {
   min-width: 6em !important;
-  font-size: 0.9em;
   font-family: monospace;
 }
-
-.linkSeparator {
-  visibility: hidden;
-  padding: 0 0.15em;
-  font-weight: 100;
+td.date-col {
+  font-size: 0.83em;
 }
-.commentIcon {
+
+.comment-icon {
   width: 1em;
   vertical-align: text-bottom;
+}
+
+/* utility classes */
+.underline {
+  text-decoration: underline;
+}
+.center {
+  text-align: center;
 }
 
 @media (max-width: 580px) {
