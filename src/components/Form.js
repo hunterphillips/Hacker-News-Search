@@ -7,14 +7,14 @@ export const Form = ({
 }) => {
   return (
     <form
-      className="formWrap"
+      className="form"
       onSubmit={(e) => onSubmit(e)}
       style={{
         color: lightOn ? '#303030' : 'white',
       }}
     >
-      <div className="formElementWrap" style={{ paddingRight: '1em' }}>
-        <label htmlFor="search">Search: </label>
+      <div className="form-group" style={{ paddingRight: '1em' }}>
+        <label htmlFor="search">Search </label>
         <input
           id="search"
           type="text"
@@ -25,8 +25,8 @@ export const Form = ({
           Submit
         </button>
       </div>
-      <div className="formElementWrap">
-        <label htmlFor="filter">Filter: </label>
+      <div className="form-group">
+        <label htmlFor="filter">Filter </label>
         <input
           id="filter"
           type="text"

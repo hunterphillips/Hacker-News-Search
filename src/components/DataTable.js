@@ -20,29 +20,29 @@ export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
             <th
               className="titleCol sortHeader"
               style={setHeaderStyle('title')}
-              onClick={() => sortList(list, 'title')}
+              onClick={sortList(list, 'title')}
             >
               title
             </th>
-            <th className="linkCol linkHeader">{/* comments */}</th>
+            <th className="linkCol linkHeader"></th>
             <th
               className="sortHeader"
               style={setHeaderStyle('author')}
-              onClick={() => sortList(list, 'author')}
+              onClick={sortList(list, 'author')}
             >
               author
             </th>
             <th
               className="sortHeader"
               style={setHeaderStyle('points')}
-              onClick={() => sortList(list, 'points')}
+              onClick={sortList(list, 'points')}
             >
               points
             </th>
             <th
               className="dateCol dateHeader sortHeader"
               style={setHeaderStyle('created_at')}
-              onClick={() => sortList(list, 'created_at')}
+              onClick={sortList(list, 'created_at')}
             >
               date
             </th>
