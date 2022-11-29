@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-test("renders HN Search header", () => {
-	render(<App />);
-	const headerText = screen.getByText(/HN Search/i);
-	expect(headerText).toBeInTheDocument();
+test('renders Hacker News Search header', () => {
+  render(<App />);
+  const headerText = screen.getByText(/Hacker News Search/i);
+  expect(headerText).toBeInTheDocument();
 });
