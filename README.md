@@ -2,7 +2,7 @@
 
 seach, sort, filter latest stories from Hacker News
 
-Hosted on Heroku [https://search-hn.herokuapp.com/](https://search-hn.herokuapp.com/)
+Hosted on Render [https://hacker-news-search.onrender.com/](https://hacker-news-search.onrender.com/)
 
 ![screenshot](https://github.com/hunterphillips/HN_Search/blob/main/src/assets/hnSearchPreview.PNG)
 
