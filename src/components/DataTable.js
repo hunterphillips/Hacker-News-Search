@@ -3,7 +3,8 @@ import commentIcon from '../assets/comment.png';
 export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
   const altURL = 'https://news.ycombinator.com/item?id='; // if item url is null
 
-  const setSortClass = (prop) => {
+  // underline selected column header
+  const setUnderline = (prop) => {
     return prop === sortProp ? 'underline' : '';
   };
 
@@ -18,26 +19,26 @@ export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
         <tbody>
           <tr>
             <th
-              className={`title-col ${setSortClass('title')}`}
+              className={`title-col ${setUnderline('title')}`}
               onClick={sortList(list, 'title')}
             >
               title
             </th>
             <th className="center"></th>
             <th
-              className={`${setSortClass('author')}`}
+              className={`author-col ${setUnderline('author')}`}
               onClick={sortList(list, 'author')}
             >
               author
             </th>
             <th
-              className={`center ${setSortClass('points')}`}
+              className={`center ${setUnderline('points')}`}
               onClick={sortList(list, 'points')}
             >
               points
             </th>
             <th
-              className={`date-col center ${setSortClass('created_at')}`}
+              className={`date-col center ${setUnderline('created_at')}`}
               onClick={sortList(list, 'created_at')}
             >
               date
