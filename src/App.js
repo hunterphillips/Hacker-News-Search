@@ -26,9 +26,20 @@ export const App = () => {
     return axios
       .get(`${API_ENDPOINT}${queryString}`)
       .then((res) => {
-        res.data.hits && sortList(res.data.hits, sort)();
+        if (res?.data?.hits) {
+          const stories = applyListTransformation(res.data.hits);
+          sortList(stories, sort)();
+        }
       })
       .catch((error) => console.log(error));
+  };
+
+  // standardize 'title' attribute
+  const applyListTransformation = (list) => {
+    return list.map((item) => {
+      item.title = item?.title || item?.story_title || 'N/A';
+      return item;
+    });
   };
 
   const sortList = (list, prop) => () => {
@@ -62,7 +73,7 @@ export const App = () => {
 
   const filteredList = listData.filter(
     (item) =>
-      item.title.toLowerCase().startsWith(query) ||
+      item?.title.toLowerCase().startsWith(query) ||
       item.author.toLowerCase().startsWith(query)
   );
 
