@@ -118,7 +118,7 @@ tr {
   font-size: 0.85em;
 }
 .date-col {
-  min-width: 6em !important;
+  min-width: fit-content !important;
   font-family: monospace;
 }
 td.date-col {
