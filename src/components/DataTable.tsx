@@ -1,10 +1,24 @@
 import commentIcon from '../assets/comment.png';
+import { NewsArticle } from '../interfaces';
+import { NewsArticleProperty } from '../types';
 
-export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
+interface DataTableProps {
+  list: NewsArticle[];
+  sortList: (list: NewsArticle[], sortProp: NewsArticleProperty) => void;
+  sortProp: string;
+  lightOn: boolean;
+}
+
+export const DataTable = ({
+  list,
+  sortList,
+  sortProp,
+  lightOn,
+}: DataTableProps) => {
   const altURL = 'https://news.ycombinator.com/item?id='; // if item url is null
 
-  // underline selected column header
-  const setUnderline = (prop) => {
+  /*  underline selected column header */
+  const setUnderline = (prop: string) => {
     return prop === sortProp ? 'underline' : '';
   };
 
@@ -20,26 +34,26 @@ export const DataTable = ({ list, sortList, sortProp, lightOn }) => {
           <tr>
             <th
               className={`title-col ${setUnderline('title')}`}
-              onClick={sortList(list, 'title')}
+              onClick={() => sortList(list, 'title')}
             >
               title
             </th>
             <th className="center"></th>
             <th
               className={`author-col ${setUnderline('author')}`}
-              onClick={sortList(list, 'author')}
+              onClick={() => sortList(list, 'author')}
             >
               author
             </th>
             <th
               className={`center ${setUnderline('points')}`}
-              onClick={sortList(list, 'points')}
+              onClick={() => sortList(list, 'points')}
             >
               points
             </th>
             <th
               className={`date-col center ${setUnderline('created_at')}`}
-              onClick={sortList(list, 'created_at')}
+              onClick={() => sortList(list, 'created_at')}
             >
               date
             </th>
